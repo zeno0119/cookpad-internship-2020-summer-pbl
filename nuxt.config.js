@@ -54,14 +54,20 @@ export default {
       path: '/api/', handler: '~~/api/'
     }
   ],
-  /*
-  ** Nuxt.js modules
-  */
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
   modules: [
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-fontawesome'
   ],
   /*
   ** Axios module configuration
