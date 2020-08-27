@@ -25,8 +25,7 @@
       </a>
     </div>
     <div class="navbar-menu" :class="{'is-active': isActive}">
-      <div class="navbar-item">
-      </div>
+      <div class="navbar-item" />
     </div>
   </nav>
 </template>

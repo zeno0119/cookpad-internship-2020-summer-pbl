@@ -14,7 +14,8 @@ export default {
   data () {
     return {
       items: [],
-      word: ''
+      word: '',
+      test: null
     }
   },
   computed: {

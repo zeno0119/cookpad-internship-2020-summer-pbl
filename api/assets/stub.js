@@ -2,6 +2,7 @@ const Recipes = require('./dummyRecipes')
 const Works = require('./dummyWorks')
 const Ingredients = require('./dummyIngredients')
 const Steps = require('./dummySteps')
+const Nutrients = require('./dummyNutrients')
 
 module.exports.Menu = () => {
   return Works.Works
@@ -33,6 +34,12 @@ module.exports.Ingredients = (el) => {
 
 module.exports.Step = (el) => {
   return Steps.dummy.filter((e) => {
+    return e.id === parseInt(el, 10)
+  })
+}
+
+module.exports.Nutrient = (el) => {
+  return Nutrients.dummy.find((e) => {
     return e.id === parseInt(el, 10)
   })
 }

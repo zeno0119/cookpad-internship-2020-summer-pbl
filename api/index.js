@@ -19,7 +19,7 @@ app.get('/recipe/:id(\\d+)', function (req, res) {
 })
 
 app.get('/recipe/nutrients/:id(\\d+)', function (req, res) {
-  res.send(`レシピid ${req.params.id}の栄養素情報を返す`)
+  res.send(stub.Nutrient(req.params.id))
 })
 
 app.get('/recipe/ingredients/:id(\\d+)', (req, res) => {

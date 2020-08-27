@@ -10,9 +10,7 @@
         {{ info.description }}
       </p>
     </div>
-    <div>
-      栄養のグラフが入るところ
-    </div>
+    <bar-chart :datacollection="chartData" />
     <div v-for="recipe in recipes" :key="recipe.id">
       <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
     </div>
@@ -21,14 +19,25 @@
 
 <script>
 import axios from 'axios'
+import BarChart from '../../components/NutritionChart'
+
 export default {
+  components: {
+    BarChart
+  },
   data () {
     return {
-      id: undefined,
+      id: null,
       recipes: [],
       info: {
         title: undefined,
         description: undefined
+      },
+      chartData: null,
+      options: {
+        animation: {
+          duration: 0
+        }
       }
     }
   },
@@ -41,6 +50,14 @@ export default {
     axios.get(`/api/work/info/${this.id}`)
       .then((res) => {
         this.info = res.data
+      })
+    // eslint-disable-next-line quotes
+    axios.get(`/api/recipe/nutrients/1`)
+      .then((res) => {
+        this.chartData = {
+          datasets: [{ data: Array(10).fill(100), label: 'demands' }, { data: res.data.data, label: '献立の栄養価' }],
+          labels: ['protein', 'sugar', 'vitaminB', 'vitaminC', 'vitaminD', 'valine', 'leucine', 'isoleucine', 'zinc', 'iron']
+        }
       })
   },
   validate ({ params }) {

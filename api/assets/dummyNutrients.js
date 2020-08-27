@@ -1,7 +1,12 @@
 module.exports.dummy = [
   {
     id: 1,
-    protein: 100,
+    data: [100, 100, 120, 120, 120, 100, 90, 100, 100, 120]
+  }
+]
+
+/**
+ *  protein: 100,
     sugar: 100,
     vitaminB: 120,
     vitaminC: 120,
@@ -11,5 +16,4 @@ module.exports.dummy = [
     isoleucine: 100,
     zinc: 100,
     iron: 120
-  }
-]
+ */
