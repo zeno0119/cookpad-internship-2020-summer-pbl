@@ -11,11 +11,11 @@ export default {
   components: {
     BarChart
   },
+  props: ['datacollection', 'options'],
   data () {
     return {
     }
-  },
-  props: ['datacollection', 'options']
+  }
 }
 </script>
 

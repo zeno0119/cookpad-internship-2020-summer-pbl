@@ -33,12 +33,11 @@ export default {
         title: undefined,
         description: undefined
       },
-      chartData: null,
+      data: [],
       options: {
         scales: {
           yAxes: [{
             ticks: {
-              // 目盛にドル記号を入れる
               callback (value, index, values) {
                 return value + '%'
               },
@@ -53,35 +52,46 @@ export default {
       }
     }
   },
+  computed: {
+    chartData () {
+      const color = []
+      this.data.forEach((el) => {
+        if (el > 100) {
+          color.push('palegreen')
+        } else if (el < 100) {
+          color.push('tomato')
+        } else {
+          color.push('gainsboro')
+        }
+      })
+      return {
+        datasets: [{ data: this.data, backgroundColor: color }],
+        labels: ['protein', 'sugar', 'vitaminB', 'vitaminC', 'vitaminD', 'valine', 'leucine', 'isoleucine', 'zinc', 'iron']
+      }
+    }
+  },
   mounted () {
     this.id = this.$route.params.id
+    // eslint-disable-next-line prefer-const
+    let data = []
     axios.get(`/api/work/${this.id}`)
       .then((res) => {
         this.recipes = res.data
+        for (let i = 0; i < 10; i++) {
+          data[i] = 0
+        }
       })
     axios.get(`/api/work/info/${this.id}`)
       .then((res) => {
         this.info = res.data
       })
-    // eslint-disable-next-line quotes
-    axios.get(`/api/recipe/nutrients/1`)
+    axios.get(`/api/work/nutrients/${this.id}`)
       .then((res) => {
-        const data = res.data.data
-        const color = []
-        data.forEach((el) => {
-          if (el > 100) {
-            color.push('palegreen')
-          } else if (el < 100) {
-            color.push('tomato')
-          } else {
-            color.push('gainsboro')
-          }
-        })
-        this.chartData = {
-          datasets: [{ data, backgroundColor: color }],
-          labels: ['protein', 'sugar', 'vitaminB', 'vitaminC', 'vitaminD', 'valine', 'leucine', 'isoleucine', 'zinc', 'iron']
-        }
+        this.data = res.data
       })
+    // eslint-disable-next-line quotes
+  },
+  methods: {
   },
   validate ({ params }) {
     // 数値でなければならない
