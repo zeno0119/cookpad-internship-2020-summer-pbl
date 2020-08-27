@@ -38,6 +38,22 @@ app.get('/recipe/ingredients/:id(\\d+)', (req, res) => {
   res.send(stub.Ingredients(req.params.id))
 })
 
+app.get('/work/ingredients/:id(\\d+)', (req, res) => {
+  // workIdに対して原材料を合成するためのエンドポイント
+  const recipe = stub.Recipes(req.params.id)
+  const ingredients = {}
+  recipe.forEach((el) => {
+    const ingredient = stub.Ingredients(el.id)
+    for (let i = 0; i < ingredient.length; i++) {
+      ingredients[ingredient[i].ingredient] = 0
+    }
+    for (let i = 0; i < ingredient.length; i++) {
+      ingredients[ingredient[i].ingredient] += ingredient[i].number
+    }
+  })
+  res.send(ingredients)
+})
+
 app.get('/recipe/steps/:id(\\d+)', (req, res) => {
   res.send(stub.Step(req.params.id))
 })

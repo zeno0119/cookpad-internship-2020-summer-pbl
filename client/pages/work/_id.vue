@@ -10,6 +10,16 @@
         {{ info.description }}
       </p>
     </div>
+    <div class="container" :style="{ backgroundColor: info.color }">
+      <div class="title">
+        <h1 class="title">
+          必要な材料
+        </h1>
+      </div>
+      <p v-for="(value, key, index) in ingredients" :key="index" class="description">
+        {{ key }}, {{ value }}
+      </p>
+    </div>
     <bar-chart class="chart" :datacollection="chartData" :options="options" />
     <div v-for="recipe in recipes" :key="recipe.id">
       <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
@@ -29,6 +39,7 @@ export default {
     return {
       id: null,
       recipes: [],
+      ingredients: {},
       info: {
         title: undefined,
         description: undefined,
@@ -89,6 +100,10 @@ export default {
     axios.get(`/api/work/nutrients/${this.id}`)
       .then((res) => {
         this.data = res.data
+      })
+    axios.get(`/api/work/ingredients/${this.id}`)
+      .then((res) => {
+        this.ingredients = res.data
       })
     // eslint-disable-next-line quotes
   },
