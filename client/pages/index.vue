@@ -2,7 +2,7 @@
   <div class="container">
     <Header @search="filter" />
     <div v-for="item in filteredItems" :key="item.id">
-      <Menu :title="item.title" :color="item.color" />
+      <Menu :id="item.id" :title="item.title" :color="item.color" />
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('/api/works/index').then((res) => {
+    axios.get('/api/work/index').then((res) => {
       this.items = res.data
     })
   },
