@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" :style="{ backgroundColor: info.color }">
       <div class="title">
         <h1 class="title">
           {{ info.title }}
@@ -31,7 +31,8 @@ export default {
       recipes: [],
       info: {
         title: undefined,
-        description: undefined
+        description: undefined,
+        color: '#ffffff'
       },
       data: [],
       options: {
@@ -104,7 +105,7 @@ export default {
 
 <style lang="css" scoped>
   div.title {
-    margin: 0.5em;
+    margin: 0em 0.5em;
   }
 
   .container {
@@ -114,5 +115,15 @@ export default {
 
   .chart {
     margin: 0.5em;
+  }
+
+  h1.title {
+    padding: 0.5em 0em;
+    color: white;
+  }
+
+  .description {
+    color: white;
+    padding: 0.5em;
   }
 </style>
