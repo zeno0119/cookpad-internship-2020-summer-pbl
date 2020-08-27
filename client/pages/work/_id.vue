@@ -10,7 +10,7 @@
         {{ info.description }}
       </p>
     </div>
-    <bar-chart :datacollection="chartData" />
+    <bar-chart class="chart" :datacollection="chartData" :options="options" />
     <div v-for="recipe in recipes" :key="recipe.id">
       <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
     </div>
@@ -35,8 +35,20 @@ export default {
       },
       chartData: null,
       options: {
-        animation: {
-          duration: 0
+        scales: {
+          yAxes: [{
+            ticks: {
+              // 目盛にドル記号を入れる
+              callback (value, index, values) {
+                return value + '%'
+              },
+              min: 0,
+              max: 160
+            }
+          }]
+        },
+        legend: {
+          display: false
         }
       }
     }
@@ -54,8 +66,19 @@ export default {
     // eslint-disable-next-line quotes
     axios.get(`/api/recipe/nutrients/1`)
       .then((res) => {
+        const data = res.data.data
+        const color = []
+        data.forEach((el) => {
+          if (el > 100) {
+            color.push('palegreen')
+          } else if (el < 100) {
+            color.push('tomato')
+          } else {
+            color.push('gainsboro')
+          }
+        })
         this.chartData = {
-          datasets: [{ data: Array(10).fill(100), label: 'demands' }, { data: res.data.data, label: '献立の栄養価' }],
+          datasets: [{ data, backgroundColor: color }],
           labels: ['protein', 'sugar', 'vitaminB', 'vitaminC', 'vitaminD', 'valine', 'leucine', 'isoleucine', 'zinc', 'iron']
         }
       })
@@ -77,5 +100,9 @@ export default {
   .container {
     text-align: center;
     align-content: center;
+  }
+
+  .chart {
+    margin: 0.5em;
   }
 </style>

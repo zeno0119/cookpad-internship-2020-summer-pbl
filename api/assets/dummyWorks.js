@@ -7,7 +7,7 @@ module.exports.Works = [{
   id: 2,
   title: '朝置き換えレシピ',
   description: '筋肉はすべてを解決する',
-  color: '#00d8d6'
+  color: '#05c46b'
 }, {
   id: 3,
   title: '筋トレのための1週間作り置きレシピ',

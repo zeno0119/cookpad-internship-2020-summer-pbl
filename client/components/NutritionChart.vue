@@ -1,6 +1,6 @@
 <template>
   <div class="small">
-    <bar-chart :chart-data="datacollection" />
+    <bar-chart style="chart" :chart-data="datacollection" :options="options" :height="250" :width="350" />
   </div>
 </template>
 
@@ -15,13 +15,9 @@ export default {
     return {
     }
   },
-  props: ['datacollection']
+  props: ['datacollection', 'options']
 }
 </script>
 
 <style>
-  .small {
-    max-width: 600px;
-    margin:  150px auto;
-  }
 </style>
