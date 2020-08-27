@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  // TODO demoの画像を動的に張るようにする BulmaのTileからmediaを呼ぶようにするのが早いかな
   props: [
     'title', 'id', 'description'
   ],

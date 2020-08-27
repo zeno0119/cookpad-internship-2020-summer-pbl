@@ -1,8 +1,10 @@
 <template>
   <div class="container">
     <Header @search="filter" />
-    <div v-for="item in filteredItems" :key="item.id">
-      <Menu :id="item.id" :title="item.title" :color="item.color" />
+    <div class="tile is-ancester">
+      <div v-for="item in filteredItems" :key="item.id" class="tile is-parent">
+        <Work :id="item.id" :title="item.title" :color="item.color" />
+      </div>
     </div>
   </div>
 </template>
