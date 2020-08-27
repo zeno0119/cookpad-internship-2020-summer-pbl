@@ -2,24 +2,32 @@ const express = require('express')
 const app = express()
 const stub = require('./assets/stub')
 
-app.get('/works/:id(\\d+)', function (req, res) {
-  res.send(`ワークid ${req.params.id}のレシピが帰ってくる`)
+app.get('/work/:id(\\d+)', function (req, res) {
+  res.send(stub.Recipes(req.params.id))
 })
 
-app.get('/works/index', function (req, res) {
+app.get('/work/info/:id(\\d+)', function (req, res) {
+  res.send(stub.workInfo(req.params.id))
+})
+
+app.get('/work/index', function (req, res) {
   res.send(stub.Menu())
 })
 
-app.get('/recipes/index', function (req, res) {
-  res.send('一覧をjsonで返す')
+app.get('/recipe/:id(\\d+)', function (req, res) {
+  res.send(stub.Recipe(req.params.id))
 })
 
-app.get('/recipes/:id(\\d+)', function (req, res) {
-  res.send(`レシピid ${req.params.id}のレシピを返す`)
+app.get('/recipe/nutrients/:id(\\d+)', function (req, res) {
+  res.send(stub.Nutrient(req.params.id))
 })
 
-app.get('/recipes/:id(\\d+)/nutrient', function (req, res) {
-  res.send(`レシピid ${req.params.id}の栄養素情報を返す`)
+app.get('/recipe/ingredients/:id(\\d+)', (req, res) => {
+  res.send(stub.Ingredients(req.params.id))
+})
+
+app.get('/recipe/steps/:id(\\d+)', (req, res) => {
+  res.send(stub.Step(req.params.id))
 })
 
 module.exports = {

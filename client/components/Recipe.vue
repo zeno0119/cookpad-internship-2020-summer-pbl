@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="path">
-    <div class="menu" :style="{ backgroundColor: color}">
+    <div class="menu">
       <p class="title">
         {{ title }}
       </p>
@@ -11,11 +11,11 @@
 <script>
 export default {
   props: [
-    'dinner', 'breakfast', 'color', 'lanch', 'title', 'id'
+    'title', 'id', 'description'
   ],
   computed: {
     path () {
-      return `/work/${this.id}`
+      return `/recipe/${this.id}`
     }
   }
 }
@@ -23,18 +23,21 @@ export default {
 
 <style lang="css" scoped>
   .title{
-    padding: 4.0em 1.0em 0.5em 0.5em;
+    padding: 4.0em 0.5em 0.5em 0.5em;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 2.0em;
-    display: flex;
     align-items: center;
-    text-align: left;
     color: #ffffff;
   }
   .menu {
     border-radius: 1.0em;
     margin: 0.5em;
+    text-align: right;
+    background-image: url('~@/assets/demo/demo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 </style>
