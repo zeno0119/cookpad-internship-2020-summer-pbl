@@ -26,6 +26,8 @@ export default {
   color: #ffffff;
   text-align: right;
   padding-top:3.0em;
+  line-break: strict;
+  word-break: keep-all;
 }
 
 .box {

@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div class="menu" :style="{ backgroundImage: `url(${recipe.imgs})` }">
-      <h1 class="title">
-        {{ recipe.title }}
-      </h1>
+    <div class="container menu" :style="{ backgroundImage: `url(${recipe.imgs})` }">
+      <div class="title">
+        <h1 class="title">
+          {{ recipe.title }}
+        </h1>
+      </div>
     </div>
-    <div>
+    <p class="description">
       {{ recipe.description }}
-    </div>
+    </p>
     <div class="ingredients">
       <p class="recipe-bar">
         材料
       </p>
       <li v-for="ingredient in ingredients" :key="ingredient.ingredient" class="list">
-        {{ ingredient.ingredient }},
-        {{ ingredient.number + ingredient.prefix }}
+        {{ ingredient.ingredient }}:
+        {{ ingredient.number + ingredient.suffix }}
       </li>
     </div>
     <div class="recipe">
@@ -75,17 +77,21 @@ export default {
   h1.title {
     padding: 4.0em 0.5em 0.5em 0.5em;
     color: white;
+    word-break: keep-all;
+    text-align: right;
   }
 
   .recipe-bar {
+    color: white;
+    font-weight: bold;
     text-align: center;
     border: solid 1px;
-    border-color: #c1ffff;
-    background-color: #ccffff;
+    border-color: #3c40c6;
+    background-color: #575fcf;
   }
 
   .list {
     padding: 0.1em;
-    border-bottom: 1px solid #c1ffff
+    border-bottom: 1px solid #3c40c6
   }
 </style>

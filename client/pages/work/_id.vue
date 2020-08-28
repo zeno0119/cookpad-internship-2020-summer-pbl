@@ -135,6 +135,6 @@ export default {
 
   .description {
     color: white;
-    padding: 0.5em;
+    padding: 0.25em;
   }
 </style>

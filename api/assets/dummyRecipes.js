@@ -14,7 +14,7 @@ module.exports.dummy = [{
 {
   id: 2,
   work_id: 2,
-  title: 'ゆで卵',
+  title: 'サラダチキンの メンマ和え',
   description: 'おいしい',
   imgs: '/demo/demo.png'
 }, {

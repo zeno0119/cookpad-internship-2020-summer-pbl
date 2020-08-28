@@ -51,7 +51,7 @@ app.get('/work/ingredients/:id(\\d+)', (req, res) => {
         ingredients.push({
           ingredient: ingredient[i].ingredient,
           number: 0,
-          suffix: ingredient[i].prefix
+          suffix: ingredient[i].suffix
         }
         )
       }
