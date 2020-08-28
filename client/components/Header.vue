@@ -4,7 +4,7 @@
       <div class="navbar-start">
         <div class="navbar-item">
           <p class="control has-icons-left">
-            <input v-model="searchWord" type="text" class="input is-rounded" placeholder="献立を検索" @keydown.enter="search">
+            <input v-model="searchParameter.text" type="text" class="input is-rounded" placeholder="献立を検索" @keydown.enter="search">
             <span class="icon is-small is-left">
               <font-awesome-icon icon="search" />
             </span>
@@ -25,7 +25,12 @@
       </a>
     </div>
     <div class="navbar-menu" :class="{'is-active': isActive}">
-      <div class="navbar-item" />
+      <div class="navbar-item">
+        <label class="checkbox">
+          <input v-model="searchParameter.displaySecondWeek" type="checkbox" @change="search">
+          二週目以降のメニューも表示する
+        </label>
+      </div>
     </div>
   </nav>
 </template>
@@ -35,7 +40,10 @@ export default {
   data () {
     return {
       isActive: false,
-      searchWord: ''
+      searchParameter: {
+        text: '',
+        displaySecondWeek: false
+      }
     }
   },
   methods: {
@@ -43,7 +51,7 @@ export default {
       this.isActive = !this.isActive
     },
     search () {
-      this.$emit('search', this.searchWord)
+      this.$emit('search', this.searchParameter)
     }
   }
 }

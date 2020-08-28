@@ -23,14 +23,18 @@ export default {
   data () {
     return {
       items: [],
-      word: '',
+      params: {
+        text: ''
+      },
       test: null
     }
   },
   computed: {
     filteredItems () {
       return this.items.filter((el) => {
-        return el.title.includes(this.word)
+        const word = el.title.includes(this.params.text)
+        const nextWeek = el.prev === null || this.params.displaySecondWeek
+        return word && nextWeek
       })
     }
   },
@@ -41,7 +45,7 @@ export default {
   },
   methods: {
     filter (word) {
-      this.word = word
+      this.params = word
     }
   }
 }

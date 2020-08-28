@@ -3,14 +3,29 @@ const Works = require('./dummyWorks')
 const Ingredients = require('./dummyIngredients')
 const Steps = require('./dummySteps')
 const Nutrients = require('./dummyNutrients')
+const Tables = require('./dummyTables')
 
 module.exports.Menu = () => {
   return Works.Works
 }
 
 module.exports.Recipes = (el) => {
-  return Recipes.dummy.filter((e) => {
+  const recipes = Tables.dummy.filter((e) => {
     return e.work_id === parseInt(el, 10)
+  })
+  const res = []
+  recipes.forEach((el) => {
+    res.push(Recipes.dummy.find((e) => {
+      return e.id === el.recipe_id
+    }))
+    res[res.length - 1].info = el
+  })
+  return res
+}
+
+module.exports.Nextwork = (el) => {
+  return Works.Works.find((e) => {
+    return e.prev === parseInt(el, 10)
   })
 }
 
@@ -21,9 +36,11 @@ module.exports.Recipe = (el) => {
 }
 
 module.exports.workInfo = (el) => {
-  return Works.Works.find((e) => {
+  const res = Works.Works.find((e) => {
     return e.id === parseInt(el, 10)
   })
+  res.nextInfo = this.Nextwork(el)
+  return res
 }
 
 module.exports.Ingredients = (el) => {

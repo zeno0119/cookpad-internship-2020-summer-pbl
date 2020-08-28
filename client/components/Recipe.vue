@@ -1,6 +1,9 @@
 <template>
   <nuxt-link :to="path">
     <div class="tile is-child is-12 box notification is-vertical" :style="{ backgroundImage: `url(${imgpath})` }">
+      <p class="day">
+        {{ info.day }}日目 {{ when(info.when) }}
+      </p>
       <p class="title">
         {{ title }}
       </p>
@@ -11,11 +14,18 @@
 <script>
 export default {
   props: [
-    'title', 'id', 'description', 'imgpath'
+    'title', 'id', 'description', 'imgpath', 'info'
   ],
   computed: {
     path () {
       return `/recipe/${this.id}`
+    }
+  },
+  methods: {
+    when (el) {
+      if (el === 'breakfast') { return '朝' }
+      if (el === 'lunch') { return '昼' }
+      if (el === 'dinner') { return '夜' }
     }
   }
 }
@@ -38,5 +48,14 @@ export default {
   height: 12.0em;
   background-position: center;
   background-size: cover;
+}
+
+.day {
+  color: white;
+  text-align: right;
+  position: absolute;
+  font-size: 1.25em;
+  right: 0.75em;
+  top: 0.75em;
 }
 </style>
