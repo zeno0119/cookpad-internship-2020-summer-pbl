@@ -23,7 +23,37 @@
     <bar-chart class="chart" :datacollection="chartData" :options="options" />
     <div class="tile is-ancester">
       <div v-for="recipe in recipes" :key="recipe.id" class="tile is-parent">
-        <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
+        <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" :info="recipe.info" />
+      </div>
+    </div>
+    <div class="level is-mobile">
+      <div class="level-left">
+        <nuxt-link v-if="info.prev !== null" :to="'/work/' + info.prev">
+          <div class="nextweek">
+            <span class="icon">
+              <font-awesome-icon icon="angle-double-left" />
+            </span>
+            前の週を見る
+          </div>
+        </nuxt-link>
+        <nuxt-link v-else to="/">
+          <div class="nextweek">
+            <span class="icon">
+              <font-awesome-icon icon="angle-double-left" />
+            </span>
+            献立一覧に戻る
+          </div>
+        </nuxt-link>
+      </div>
+      <div class="level-right">
+        <nuxt-link v-if="info.nextInfo !== undefined" :to="'/work/' + info.nextInfo.id">
+          <div class="nextweek">
+            次の週を見る
+            <span class="icon">
+              <font-awesome-icon icon="angle-double-right" />
+            </span>
+          </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -45,7 +75,10 @@ export default {
       info: {
         title: undefined,
         description: undefined,
-        color: '#ffffff'
+        color: '#ffffff',
+        nextInfo: {
+          work_id: undefined
+        }
       },
       data: [],
       options: {
@@ -122,6 +155,7 @@ export default {
   .container {
     text-align: center;
     align-content: center;
+    padding-bottom: 0.5em;
   }
 
   .chart {
@@ -136,5 +170,11 @@ export default {
   .description {
     color: white;
     padding: 0.25em;
+  }
+
+  .nextweek {
+    margin: 0.5em;
+    vertical-align: center;
+    text-align: right;
   }
 </style>
