@@ -41,14 +41,26 @@ app.get('/recipe/ingredients/:id(\\d+)', (req, res) => {
 app.get('/work/ingredients/:id(\\d+)', (req, res) => {
   // workIdに対して原材料を合成するためのエンドポイント
   const recipe = stub.Recipes(req.params.id)
-  const ingredients = {}
+  const ingredients = []
   recipe.forEach((el) => {
     const ingredient = stub.Ingredients(el.id)
     for (let i = 0; i < ingredient.length; i++) {
-      ingredients[ingredient[i].ingredient] = 0
+      if (ingredients.find((el) => {
+        return el.ingredient === ingredient[i].ingredient
+      }) === undefined) {
+        ingredients.push({
+          ingredient: ingredient[i].ingredient,
+          number: 0,
+          suffix: ingredient[i].prefix
+        }
+        )
+      }
     }
     for (let i = 0; i < ingredient.length; i++) {
-      ingredients[ingredient[i].ingredient] += ingredient[i].number
+      const idx = ingredients.findIndex((el) => {
+        return el.ingredient === ingredient[i].ingredient
+      })
+      ingredients[idx].number += ingredient[i].number
     }
   })
   res.send(ingredients)

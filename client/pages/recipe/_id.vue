@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="menu">
+    <div class="menu" :style="{ backgroundImage: `url(${recipe.imgs})` }">
       <h1 class="title">
         {{ recipe.title }}
       </h1>
@@ -67,7 +67,6 @@ export default {
 <style lang="css" scoped>
   .menu {
     text-align: right;
-    background-image: url('~@/assets/demo/demo.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
