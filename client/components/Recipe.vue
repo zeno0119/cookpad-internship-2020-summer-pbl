@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="path">
-    <div class="menu">
+    <div class="tile is-child is-12 box notification is-vertical" :style="{ backgroundImage: `url(${imgpath})` }">
       <p class="title">
         {{ title }}
       </p>
@@ -10,9 +10,8 @@
 
 <script>
 export default {
-  // TODO demoの画像を動的に張るようにする BulmaのTileからmediaを呼ぶようにするのが早いかな
   props: [
-    'title', 'id', 'description'
+    'title', 'id', 'description', 'imgpath'
   ],
   computed: {
     path () {
@@ -23,22 +22,17 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .title{
-    padding: 4.0em 0.5em 0.5em 0.5em;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2.0em;
-    align-items: center;
-    color: #ffffff;
-  }
-  .menu {
-    border-radius: 1.0em;
-    margin: 0.5em;
-    text-align: right;
-    background-image: url('~@/assets/demo/demo.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
+.title {
+  color: #ffffff;
+  text-align: right;
+  padding-top:3.0em;
+  line-break: strict;
+  word-break: keep-all;
+}
+
+.box {
+  border-radius: 1.0em;
+  background-position: center;
+  background-size: cover;
+}
 </style>

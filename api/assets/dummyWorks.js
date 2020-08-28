@@ -1,6 +1,6 @@
 module.exports.Works = [{
   id: 1,
-  title: '筋トレのための1週間日替わりレシピ',
+  title: '筋トレのための 1週間日替わりレシピ',
   description: '筋肉は裏切らない',
   color: '#546de5'
 }, {
@@ -10,7 +10,7 @@ module.exports.Works = [{
   color: '#05c46b'
 }, {
   id: 3,
-  title: '筋トレのための1週間作り置きレシピ',
+  title: '筋トレのための 1週間作り置きレシピ',
   description: 'All you need is power',
   color: '#546de5'
 }]

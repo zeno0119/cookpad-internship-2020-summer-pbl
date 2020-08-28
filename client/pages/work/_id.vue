@@ -16,13 +16,15 @@
           必要な材料
         </h1>
       </div>
-      <p v-for="(value, key, index) in ingredients" :key="index" class="description">
-        {{ key }}, {{ value }}
+      <p v-for="ingredient in ingredients" :key="ingredient.ingredient" class="description">
+        {{ ingredient.ingredient }}:{{ ingredient.number + ingredient.suffix }}
       </p>
     </div>
     <bar-chart class="chart" :datacollection="chartData" :options="options" />
-    <div v-for="recipe in recipes" :key="recipe.id">
-      <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
+    <div class="tile is-ancester">
+      <div v-for="recipe in recipes" :key="recipe.id" class="tile is-parent">
+        <Recipe :id="recipe.id" :title="recipe.title" :description="recipe.description" :imgpath="recipe.imgs" />
+      </div>
     </div>
   </div>
 </template>
@@ -84,14 +86,9 @@ export default {
   },
   mounted () {
     this.id = this.$route.params.id
-    // eslint-disable-next-line prefer-const
-    let data = []
     axios.get(`/api/work/${this.id}`)
       .then((res) => {
         this.recipes = res.data
-        for (let i = 0; i < 10; i++) {
-          data[i] = 0
-        }
       })
     axios.get(`/api/work/info/${this.id}`)
       .then((res) => {
@@ -105,7 +102,6 @@ export default {
       .then((res) => {
         this.ingredients = res.data
       })
-    // eslint-disable-next-line quotes
   },
   methods: {
   },
@@ -139,6 +135,6 @@ export default {
 
   .description {
     color: white;
-    padding: 0.5em;
+    padding: 0.25em;
   }
 </style>
