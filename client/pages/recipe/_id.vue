@@ -91,7 +91,11 @@ export default {
   }
 
   .list {
-    padding: 0.1em;
+    padding: 0.1em 0.5em;
     border-bottom: 1px solid #3c40c6
+  }
+
+  .description {
+    padding: 0.5em;
   }
 </style>

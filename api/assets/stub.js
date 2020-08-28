@@ -6,9 +6,7 @@ const Nutrients = require('./dummyNutrients')
 const Tables = require('./dummyTables')
 
 module.exports.Menu = () => {
-  return Works.Works.filter((e) => {
-    return e.prev === null
-  })
+  return Works.Works
 }
 
 module.exports.Recipes = (el) => {
@@ -42,7 +40,6 @@ module.exports.workInfo = (el) => {
     return e.id === parseInt(el, 10)
   })
   res.nextInfo = this.Nextwork(el)
-  console.log(res)
   return res
 }
 
