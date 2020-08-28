@@ -25,13 +25,17 @@ export default {
 .title {
   color: #ffffff;
   text-align: right;
-  padding-top:3.0em;
   line-break: strict;
   word-break: keep-all;
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
 }
 
 .box {
+  position: relative;
   border-radius: 1.0em;
+  height: 12.0em;
   background-position: center;
   background-size: cover;
 }

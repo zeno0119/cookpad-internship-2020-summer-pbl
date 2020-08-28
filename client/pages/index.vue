@@ -3,7 +3,14 @@
     <Header @search="filter" />
     <div class="tile is-ancester">
       <div v-for="item in filteredItems" :key="item.id" class="tile is-parent">
-        <Work :id="item.id" :title="item.title" :color="item.color" />
+        <Work
+          :id="item.id"
+          :title="item.title"
+          :color="item.color"
+          :breakfast="item.breakfast"
+          :lunch="item.lunch"
+          :dinner="item.dinner"
+        />
       </div>
     </div>
   </div>
