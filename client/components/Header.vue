@@ -31,6 +31,20 @@
           二週目以降のメニューも表示する
         </label>
       </div>
+      <div class="navbar-item">
+        <label class="checkbox">
+          <input v-model="searchParameter.requireBreakfast" type="checkbox" @change="search">
+          朝
+        </label>
+        <label class="checkbox">
+          <input v-model="searchParameter.requireLunch" type="checkbox" @change="search">
+          昼
+        </label>
+        <label class="checkbox">
+          <input v-model="searchParameter.requireDinner" type="checkbox" @change="search">
+          夕
+        </label>
+      </div>
     </div>
   </nav>
 </template>
@@ -42,7 +56,10 @@ export default {
       isActive: false,
       searchParameter: {
         text: '',
-        displaySecondWeek: false
+        displaySecondWeek: false,
+        requireBreakfast: false,
+        requireLunch: false,
+        requireDinner: false
       }
     }
   },

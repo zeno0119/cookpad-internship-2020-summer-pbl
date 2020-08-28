@@ -34,7 +34,10 @@ export default {
       return this.items.filter((el) => {
         const word = el.title.includes(this.params.text)
         const nextWeek = el.prev === null || this.params.displaySecondWeek
-        return word && nextWeek
+        const breakfast = !this.params.requireBreakfast || el.breakfast
+        const lunch = !this.params.requireLunch || el.lunch
+        const dinner = !this.params.requireDinner || el.dinner
+        return word && nextWeek && breakfast && lunch && dinner
       })
     }
   },

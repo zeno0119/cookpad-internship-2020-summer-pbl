@@ -18,7 +18,14 @@ module.exports.Recipes = (el) => {
     res.push(Recipes.dummy.find((e) => {
       return e.id === el.recipe_id
     }))
-    res[res.length - 1].info = el
+    res[res.length - 1].info = JSON.parse(JSON.stringify(el))
+  })
+  res.sort((a, b) => {
+    if (a.day < b.day) { return -1 }
+    if (a.day > b.day) { return 1 }
+    if (a.when === 'breakfast' && (b.when === 'lunch' || b.when === 'dinner')) { return -1 }
+    if (a.when === 'lunch' && b.when === 'dinner') { return -1 }
+    return 1
   })
   return res
 }

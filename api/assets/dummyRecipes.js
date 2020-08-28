@@ -5,8 +5,8 @@ module.exports.dummy = [{
   imgs: '/demo/demo.png'
 }, {
   id: 1,
-  title: 'ゆで卵',
-  description: 'おいしい',
+  title: 'プロテインシェイク',
+  description: '筋肉を鍛えるのです・・・',
   imgs: '/demo/demo.png'
 },
 {
@@ -16,7 +16,7 @@ module.exports.dummy = [{
   imgs: '/demo/demo.png'
 }, {
   id: 3,
-  title: 'ゆで卵',
-  description: 'おいしい',
+  title: '鳥胸肉の チャーシュー',
+  description: 'きっとおいしい',
   imgs: '/demo/demo.png'
 }]

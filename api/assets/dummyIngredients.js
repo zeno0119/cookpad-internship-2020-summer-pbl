@@ -1,9 +1,9 @@
 module.exports.dummy = [
   {
     id: 1,
-    ingredient: 'たまご',
+    ingredient: 'プロテイン',
     number: 100,
-    suffix: '個'
+    suffix: 'g'
   },
   {
     id: 2,
@@ -31,8 +31,8 @@ module.exports.dummy = [
   },
   {
     id: 3,
-    ingredient: 'たまご',
-    number: 10,
-    suffix: '個'
+    ingredient: '鳥胸肉',
+    number: 100,
+    suffix: 'g'
   }
 ]

@@ -54,6 +54,12 @@
             </span>
           </div>
         </nuxt-link>
+        <div v-else class="nextweek-disabled nextweek">
+          次の週を見る
+          <span class="icon">
+            <font-awesome-icon icon="angle-double-right" />
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -176,5 +182,9 @@ export default {
     margin: 0.5em;
     vertical-align: center;
     text-align: right;
+  }
+
+  .nextweek-disabled{
+    color: gray;
   }
 </style>
